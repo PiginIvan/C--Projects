@@ -48,6 +48,8 @@ int main() {
 	LinkedList<int> data;
     data.push_front(0);
 
+	LinkedList<double> XXX;
+
 	data.push_back(1);
 	data.push_back(2);
 	data.push_back(3);

@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 
+template<>
+void LinkedList<char>::push_back(char x);
+
 template<class T>
 LinkedList<T>::LinkedList() {
 	head = nullptr;
@@ -9,6 +12,7 @@ LinkedList<T>::LinkedList() {
 
 template<class T>
 LinkedList<T>::LinkedList(std::initializer_list<T> init_list) {
+	head = nullptr;
 	for (auto& x : init_list) {
 		push_back(x);
 	}
@@ -16,6 +20,7 @@ LinkedList<T>::LinkedList(std::initializer_list<T> init_list) {
 
 template<class T>
 LinkedList<T>::LinkedList(const LinkedList& other) {
+	head = nullptr;
 	Node<T>* tmp = other.head;
 	while (tmp) {
 		push_back(tmp->val);
@@ -120,6 +125,7 @@ LinkedList<char>::LinkedList() {
 
 template<>
 LinkedList<char>::LinkedList(std::initializer_list<char> init_list) {
+	head = nullptr;
 	for (auto& x : init_list) {
 		push_back(x);
 	}
@@ -127,6 +133,7 @@ LinkedList<char>::LinkedList(std::initializer_list<char> init_list) {
 
 template<>
 LinkedList<char>::LinkedList(const LinkedList& other) {
+	head = nullptr;
 	Node<char>* tmp = other.head;
 	while (tmp) {
 		push_back(tmp->val);
@@ -136,8 +143,24 @@ LinkedList<char>::LinkedList(const LinkedList& other) {
 
 template<>
 LinkedList<char>::LinkedList(const std::string& s) {
+	head = nullptr;
 	for (char x : s) {
 		push_back(x);
+	}
+}
+
+template<>
+void LinkedList<char>::push_back(char x) {
+	if (!head) {
+		head = new Node<char>(x);
+	}
+	else {
+		Node<char>* prev = nullptr;
+		Node<char>* tmp = head;
+		while (tmp->next) {
+			tmp = tmp->next;
+		}
+		tmp->next = new Node<char>(x);
 	}
 }
 

@@ -1,0 +1,20 @@
+CXX = g++
+CXXFLAGS = -g -O
+INCLUDE = include
+
+all: main
+clean:
+	del -f main *.o
+main: main.o Graph.o Node.o 
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+main.o:
+	$(CXX) $(CXXFLAGS) -I $(INCLUDE) -c main.cpp
+
+Graph.o:
+	$(CXX) $(CXXFLAGS) -I $(INCLUDE) -c src/Graph.cpp
+
+Node.o:
+	$(CXX) $(CXXFLAGS) -I $(INCLUDE) -c src/Node.cpp
+
+.PHONY: all clean

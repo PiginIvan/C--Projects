@@ -2,11 +2,12 @@
 #define DYNARRAY_HPP
 
 class DynArray {
-public:
+private:
 	int length;
 	double* data;
 	int count_elem;
 
+public:
 	DynArray(int size);
 	~DynArray();
 

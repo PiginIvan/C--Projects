@@ -2,11 +2,12 @@
 #define MYSTACK_HPP
 
 class MyStack {
-public:
+private:
 	int size;
 	int* data;
 	int count_elem;
 
+public:
 	MyStack(int size);
 	~MyStack();
 

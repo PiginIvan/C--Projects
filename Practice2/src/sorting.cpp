@@ -33,7 +33,7 @@ void sort_arr<char>(char* arr, int* N) {
 	int end = *N - 1;
 	char x = ' ';
 	for (int i = 0; i < end + 1; i++) {
-		if (((int)arr[i] < 65) || ((int)arr[i] > 90 && (int)arr[i] < 97) || ((int)arr[i] > 122)) {
+		if ((static_cast<int>(arr[i]) < 65) || (static_cast<int>(arr[i]) > 90 && static_cast<int>(arr[i]) < 97) || (static_cast<int>(arr[i]) > 122)) {
 			arr[i] = ' '; std::swap(arr[i], arr[end--]); i--;
 		}
 	}

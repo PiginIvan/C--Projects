@@ -3,10 +3,11 @@
 #include <vector>
 
 class Queue {
-public:
+private:
 	std::vector<int> data;
 	int size;
 
+public:
 	Queue();
 	Queue(int size);
 	Queue(const Queue& other);

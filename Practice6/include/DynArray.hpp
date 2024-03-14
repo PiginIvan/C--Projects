@@ -4,11 +4,13 @@
 
 template <class T>
 class DynArray {
-public:
+private:
 	std::vector<T> data;
-	static int arrays_created;
 	int size;
 
+public:
+	static int arrays_created;
+	
 	DynArray();
 	DynArray(int size);
 	DynArray(const DynArray& other);

@@ -2,7 +2,7 @@
 #include <iomanip>
 #include "functions.hpp"
 
-#define TASK1
+#define TASK6
 
 #ifdef TASK1
 

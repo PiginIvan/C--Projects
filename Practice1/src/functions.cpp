@@ -54,7 +54,7 @@ double find_sum(double a, double q) {
 void find_sum_with_precision(double sum, double ans, double e, double a, double q) {
 	double e1 = e;
 	int precision = 0, step = 1;
-	while ((int)e1 != e1) {
+	while (static_cast<int>(e1) != e1) {
 		e1 *= 10;
 		precision++;
 	}
@@ -65,6 +65,6 @@ void find_sum_with_precision(double sum, double ans, double e, double a, double 
 }
 
 void check_letter(char c) {
-	if ((int)c >= 70 && (int)c <= 90 || (int)c >= 97 && (int)c <= 122) std::cout << "YES" << std::endl;
+	if (static_cast<int>(c) >= 70 && static_cast<int>(c) <= 90 || static_cast<int>(c) >= 97 && static_cast<int>(c) <= 122) std::cout << "YES" << std::endl;
 	else std::cout << "NO" << std::endl;
 }

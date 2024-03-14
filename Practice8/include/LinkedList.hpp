@@ -5,18 +5,20 @@
 
 template<class T>
 class LinkedList {
-public:
+private:
 	Node<T>* head;
-
 	class iter {
+	private:
 		Node<T>* cur;
 	public:
 		iter(Node<T>* curNode) { cur = curNode; };
 
-		T& operator *() { return cur->val; };
-		iter& operator ++() { cur = cur->next; return *this; };
+		T& operator *() { return cur->get_ref_val(); };
+		iter& operator ++() { cur->set_next(cur->get_next()); return *this; };
 		bool operator !=(const iter& other) { return cur != other.cur;  };
 	};
+
+public:
 
 	iter begin() const { return iter(head); };
 	iter end() const { return iter(nullptr); };

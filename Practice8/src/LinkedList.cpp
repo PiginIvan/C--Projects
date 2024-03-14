@@ -23,8 +23,8 @@ LinkedList<T>::LinkedList(const LinkedList& other) {
 	head = nullptr;
 	Node<T>* tmp = other.head;
 	while (tmp) {
-		push_back(tmp->val);
-		tmp = tmp->next;
+		push_back(tmp->get_val());
+		tmp->set_next(tmp->get_next());
 	}
 }
 
@@ -36,10 +36,10 @@ void LinkedList<T>::push_back(T x) {
 	else {
 		Node<T>* prev = nullptr;
 		Node<T>* tmp = head;
-		while (tmp->next) {
-			tmp = tmp->next;
+		while (tmp->get_next()) {
+			tmp->set_next(tmp->get_next());
 		}
-		tmp->next = new Node<T>(x);
+		tmp->set_next(new Node<T>(x));
 	}
 }
 
@@ -51,7 +51,7 @@ void LinkedList<T>::push_front(T x) {
 	else {
 		Node<T>* tmp = head;
 		head = new Node<T>(x);
-		head->next = tmp;
+		head->set_next(tmp);
 	}
 }
 
@@ -63,11 +63,11 @@ void LinkedList<T>::pop_back() {
 	else {
 		Node<T>* tmp = head;
 		Node<T>* prev = nullptr;
-		while (tmp->next) {
+		while (tmp->get_next()) {
 			prev = tmp;
-			tmp = tmp->next;
+			tmp->set_next(tmp->get_next());
 		}
-		if (prev) prev->next = nullptr;
+		if (prev) prev->set_next(nullptr);
 		delete tmp;
 	}
 }
@@ -78,7 +78,7 @@ void LinkedList<T>::pop_front() {
 		return;
 	}
 	else {
-		Node<T>* tmp = head->next;
+		Node<T>* tmp = head->get_next();
 		delete head;
 		head = tmp;
 	}
@@ -96,8 +96,8 @@ template<class T>
 void LinkedList<T>::print_list() {
 	Node<T>* tmp = head;
 	while (tmp) {
-		std::cout << tmp->val << " ";
-		tmp = tmp->next;
+		std::cout << tmp->get_val() << " ";
+		tmp->set_next(tmp->get_next());
 	}
 	std::cout << std::endl;
 }
@@ -106,8 +106,8 @@ template<class T>
 bool LinkedList<T>::find(T x) {
 	Node<T>* tmp = head;
 	while (tmp) {
-		if (tmp->val == x) return true;
-		tmp = tmp->next;
+		if (tmp->get_val() == x) return true;
+		tmp->set_next(tmp->get_next());
 	}
 	return false;
 }
@@ -136,8 +136,8 @@ LinkedList<char>::LinkedList(const LinkedList& other) {
 	head = nullptr;
 	Node<char>* tmp = other.head;
 	while (tmp) {
-		push_back(tmp->val);
-		tmp = tmp->next;
+		push_back(tmp->get_val());
+		tmp->set_next(tmp->get_next());
 	}
 }
 
@@ -157,10 +157,10 @@ void LinkedList<char>::push_back(char x) {
 	else {
 		Node<char>* prev = nullptr;
 		Node<char>* tmp = head;
-		while (tmp->next) {
-			tmp = tmp->next;
+		while (tmp->get_next()) {
+			tmp->set_next(tmp->get_next());
 		}
-		tmp->next = new Node<char>(x);
+		tmp->set_next(new Node<char>(x));
 	}
 }
 
@@ -172,7 +172,7 @@ void LinkedList<char>::push_front(char x) {
 	else {
 		Node<char>* tmp = head;
 		head = new Node<char>(x);
-		head->next = tmp;
+		head->set_next(tmp);
 	}
 }
 
@@ -184,11 +184,11 @@ void LinkedList<char>::pop_back() {
 	else {
 		Node<char>* tmp = head;
 		Node<char>* prev = nullptr;
-		while (tmp->next) {
+		while (tmp->get_next()) {
 			prev = tmp;
-			tmp = tmp->next;
+			tmp->set_next(tmp->get_next());
 		}
-		if (prev) prev->next = nullptr;
+		if (prev) prev->set_next(nullptr);
 		delete tmp;
 	}
 }
@@ -199,7 +199,7 @@ void LinkedList<char>::pop_front() {
 		return;
 	}
 	else {
-		Node<char>* tmp = head->next;
+		Node<char>* tmp = head->get_next();
 		delete head;
 		head = tmp;
 	}
@@ -209,8 +209,8 @@ template<>
 void LinkedList<char>::print_list() {
 	Node<char>* tmp = head;
 	while (tmp) {
-		std::cout << tmp->val << " ";
-		tmp = tmp->next;
+		std::cout << tmp->get_val() << " ";
+		tmp->set_next(tmp->get_next());
 	}
 	std::cout << std::endl;
 }
@@ -219,8 +219,8 @@ template<>
 bool LinkedList<char>::find(char x) {
 	Node<char>* tmp = head;
 	while (tmp) {
-		if (tmp->val == x) return true;
-		tmp = tmp->next;
+		if (tmp->get_val() == x) return true;
+		tmp->set_next(tmp->get_next());
 	}
 	return false;
 }

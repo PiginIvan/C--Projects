@@ -35,7 +35,7 @@ int main() {
 	}
 
 	std::cout << "Appeal to data of class by operator []" << std::endl;
-	for (int i = 0; i < arr1.length; i++) {
+	for (int i = 0; i < arr1.get_length(); i++) {
 		std::cout << arr1[i] << " ";
 	}
 	std::cout << std::endl;
@@ -44,21 +44,21 @@ int main() {
 
 	std::cout << "Array received by operator + of 2 other arrays" << std::endl;
 	DynArray<float> arr3 = arr1 + arr2;
-	for (int i = 0; i < arr3.length; i++) {
+	for (int i = 0; i < arr3.get_length(); i++) {
 		std::cout << arr3[i] << " ";
 	}
 	std::cout << std::endl;
 
 	std::cout << "Left rotate by 3 elements" << std::endl;
 	DynArray<float> arr4 = arr1.operator>>(3);
-	for (int i = 0; i < arr4.length; i++) {
+	for (int i = 0; i < arr4.get_length(); i++) {
 		std::cout << arr4[i] << " ";
 	}
 	std::cout << std::endl;
 
 	std::cout << "Right rotate by 4 elements" << std::endl;
 	DynArray<float> arr5 = arr1.operator<<(4);
-	for (int i = 0; i < arr5.length; i++) {
+	for (int i = 0; i < arr5.get_length(); i++) {
 		std::cout << arr5[i] << " ";
 	}
 	std::cout << std::endl;

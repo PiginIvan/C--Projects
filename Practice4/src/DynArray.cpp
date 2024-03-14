@@ -54,6 +54,9 @@ void DynArray<T>::append(T num) {
 }
 
 template<class T>
+int DynArray<T>::get_length() { return length; }
+
+template<class T>
 T DynArray<T>::get(int index) {
 	return this->data[index];
 }

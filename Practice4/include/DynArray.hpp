@@ -3,9 +3,11 @@
 
 template <class T>
 class DynArray {
-public:
+private:
 	int length, count_elem;
 	T* data;
+
+public:
 	static int arrays_created;
 
 	DynArray();
@@ -15,6 +17,7 @@ public:
 
 	int size();
 	void append(T num);
+	int get_length();
 	T get(int index);
 
 	DynArray& operator=(const DynArray& other);

@@ -4,10 +4,11 @@
 #include "VecND.hpp"
 
 class Mat2D {
-public:
+private:
 	int rows, columns;
 	std::vector<VecND> data;
 
+public:
 	Mat2D();
 	Mat2D(int m, int n);
 	

@@ -4,9 +4,10 @@
 #include "iostream"
 
 class VecND {
-public:
+private:
 	std::vector<int> data;
 
+public:
 	VecND();
 	VecND(int size);
 	VecND(const VecND& other);

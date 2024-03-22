@@ -5,6 +5,12 @@ Node::Node() : id(0), adj(std::vector<int>()), m(std::unordered_map<std::string,
 
 Node::Node(int curId) : id(curId), adj(std::vector<int>()), m(std::unordered_map<std::string, int>()) { }
 
+int Node::getID() const { return id; }
+
+std::unordered_map<std::string, int> Node::getM() const { return m; }
+
+std::vector<int> Node::getADJ() const { return adj; }
+
 void Node::addNeighbour(int curId) { adj.push_back(curId); }
 
 void Node::insert(std::string key, int val) { m[key] = val; }

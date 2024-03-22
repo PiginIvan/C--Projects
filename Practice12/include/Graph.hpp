@@ -4,9 +4,10 @@
 #include <functional>
 
 class Graph {
-public:
+private:
     std::vector<Node*> nodes;
 
+public:
     Graph();
 
     void insert(Node* curNode);

@@ -24,7 +24,7 @@ void Graph::BFS(const std::function<void(const Node&)>& func, int index) {
 
         func(*nodes[cur]);
         
-        for (int neighbor : nodes[cur]->adj) {    
+        for (int neighbor : nodes[cur]->getADJ()) {    
             if (!visited[neighbor]) {
                 q.push(neighbor);
                 visited[neighbor] = true;
@@ -38,7 +38,7 @@ void Graph::DFS(const std::function<void(const Node&)>& func, int index, std::ve
     
     func(*nodes[index]);
  
-    for (int neighbor : nodes[index]->adj) {    
+    for (int neighbor : nodes[index]->getADJ()) {    
         if (!visited[neighbor]) {
             DFS(func, neighbor, visited);
         }

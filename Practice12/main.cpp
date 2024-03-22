@@ -37,8 +37,8 @@ int main() {
     std::cin >> key;
     
     auto func = [key](const Node& node) {
-        if (node.m.find(key) != node.m.end()) {
-            std::cout << "Node ID: " << node.id << ", Key: " << key << ", Value: " << node.m.at(key) << "\n";
+        if (node.getM().find(key) != node.getM().end()) {
+            std::cout << "Node ID: " << node.getID() << ", Key: " << key << ", Value: " << node.getM().at(key) << "\n";
         }
     };
     

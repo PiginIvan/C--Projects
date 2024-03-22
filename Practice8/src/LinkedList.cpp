@@ -24,7 +24,7 @@ LinkedList<T>::LinkedList(const LinkedList& other) {
 	Node<T>* tmp = other.head;
 	while (tmp) {
 		push_back(tmp->get_val());
-		tmp->set_next(tmp->get_next());
+		tmp = tmp->get_next();
 	}
 }
 
@@ -37,7 +37,7 @@ void LinkedList<T>::push_back(T x) {
 		Node<T>* prev = nullptr;
 		Node<T>* tmp = head;
 		while (tmp->get_next()) {
-			tmp->set_next(tmp->get_next());
+			tmp = tmp->get_next();
 		}
 		tmp->set_next(new Node<T>(x));
 	}
@@ -65,7 +65,7 @@ void LinkedList<T>::pop_back() {
 		Node<T>* prev = nullptr;
 		while (tmp->get_next()) {
 			prev = tmp;
-			tmp->set_next(tmp->get_next());
+			tmp = tmp->get_next();
 		}
 		if (prev) prev->set_next(nullptr);
 		delete tmp;
@@ -97,7 +97,7 @@ void LinkedList<T>::print_list() {
 	Node<T>* tmp = head;
 	while (tmp) {
 		std::cout << tmp->get_val() << " ";
-		tmp->set_next(tmp->get_next());
+		tmp = tmp->get_next();
 	}
 	std::cout << std::endl;
 }
@@ -107,7 +107,7 @@ bool LinkedList<T>::find(T x) {
 	Node<T>* tmp = head;
 	while (tmp) {
 		if (tmp->get_val() == x) return true;
-		tmp->set_next(tmp->get_next());
+		tmp = tmp->get_next();
 	}
 	return false;
 }
@@ -137,7 +137,7 @@ LinkedList<char>::LinkedList(const LinkedList& other) {
 	Node<char>* tmp = other.head;
 	while (tmp) {
 		push_back(tmp->get_val());
-		tmp->set_next(tmp->get_next());
+		tmp = tmp->get_next();
 	}
 }
 
@@ -158,7 +158,7 @@ void LinkedList<char>::push_back(char x) {
 		Node<char>* prev = nullptr;
 		Node<char>* tmp = head;
 		while (tmp->get_next()) {
-			tmp->set_next(tmp->get_next());
+			tmp = tmp->get_next();
 		}
 		tmp->set_next(new Node<char>(x));
 	}
@@ -186,7 +186,7 @@ void LinkedList<char>::pop_back() {
 		Node<char>* prev = nullptr;
 		while (tmp->get_next()) {
 			prev = tmp;
-			tmp->set_next(tmp->get_next());
+			tmp = tmp->get_next();
 		}
 		if (prev) prev->set_next(nullptr);
 		delete tmp;
@@ -210,7 +210,7 @@ void LinkedList<char>::print_list() {
 	Node<char>* tmp = head;
 	while (tmp) {
 		std::cout << tmp->get_val() << " ";
-		tmp->set_next(tmp->get_next());
+		tmp = tmp->get_next();
 	}
 	std::cout << std::endl;
 }
@@ -220,7 +220,7 @@ bool LinkedList<char>::find(char x) {
 	Node<char>* tmp = head;
 	while (tmp) {
 		if (tmp->get_val() == x) return true;
-		tmp->set_next(tmp->get_next());
+		tmp = tmp->get_next();
 	}
 	return false;
 }

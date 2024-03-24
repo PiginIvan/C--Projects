@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define TASK1
+#define TASK2
 
 #ifdef TASK1
 #include "DynArray.hpp"

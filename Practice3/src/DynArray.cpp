@@ -2,12 +2,11 @@
 
 DynArray::DynArray(int size) {
     this->length = size;
-    this->data = new double[size];
+    this->data = std::make_unique<double[]>(0);
     this->count_elem = 0;
 }
 
 DynArray::~DynArray() {
-    delete[] this->data;
     this->length = 0;
     this->count_elem = 0;
 }
@@ -22,20 +21,15 @@ void DynArray::append(double num) {
     }
     else {
         this->length *= 2;
-        double* arr = new double[this->length];
+        std::unique_ptr<double[]> arr = std::make_unique<double[]>(this->length);
         for (int i = 0; i < this->count_elem; i++) {
             arr[i] = this->data[i];
         }
-        delete[] this->data;
-        this->data = arr;
+        this->data.reset(arr.get());
         this->data[this->count_elem++] = num;
     }
 }
 
 double DynArray::get(int index) {
-    for (int i = 0; i < this->length; i++) {
-        if (i == index) {
-            return this->data[i];
-        }
-    }
+    return this->data[index];
 }

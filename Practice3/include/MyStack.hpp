@@ -1,10 +1,11 @@
 #ifndef MYSTACK_HPP
 #define MYSTACK_HPP
+#include <memory>
 
 class MyStack {
 private:
 	int size;
-	int* data;
+	std::unique_ptr<int[]> data;
 	int count_elem;
 
 public:

@@ -3,12 +3,11 @@
 
 MyStack::MyStack(int size) {
     this->size = size;
-    this->data = new int[size];
+    this->data = std::make_unique<int[]>(0);
     this->count_elem = 0;
 }
 
 MyStack::~MyStack() {
-    delete[] data;
     this->size = 0;
     this->count_elem = 0;
 }

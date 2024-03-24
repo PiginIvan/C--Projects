@@ -1,10 +1,11 @@
 #ifndef DYNARRAY_HPP
 #define DYNARRAY_HPP
+#include <memory>
 
 class DynArray {
 private:
 	int length;
-	double* data;
+	std::unique_ptr<double[]> data;
 	int count_elem;
 
 public:

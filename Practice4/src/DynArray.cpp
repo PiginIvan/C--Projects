@@ -11,20 +11,19 @@ template<class T>
 DynArray<T>::DynArray(int size) {
 	this->length = size;
 	this->count_elem = 0;
-	this->data = new T[size];
+	this->data = std::make_unique<T[]>(0);
 	arrays_created++;
 }
 
 template<class T>
 DynArray<T>::~DynArray() {
-	delete[] this->data;
 	arrays_created--;
 }
 
 template<class T>
 DynArray<T>::DynArray(const DynArray& other) {
 	this->length = other.length;
-	this->data = new T[this->length];
+	this->data = std::make_unique<T[]>(this->length);
 	for (int i = 0; i < this->length; i++) {
 		this->data[i] = other.data[i];
 	}
@@ -43,12 +42,11 @@ void DynArray<T>::append(T num) {
 	}
 	else {
 		this->length *= 2;
-		T* arr = new T[this->length];
+		std::unique_ptr<T[]> arr = std::make_unique<T[]>(this->length);
 		for (int i = 0; i < this->count_elem; i++) {
 			arr[i] = this->data[i];
 		}
-		delete[] this->data;
-		this->data = arr;
+		this->data.reset(arr.get());
 		this->data[this->count_elem++] = num;
 	}
 }
@@ -63,9 +61,8 @@ T DynArray<T>::get(int index) {
 
 template<class T>
 DynArray<T>& DynArray<T>::operator=(const DynArray& other) {
-	delete[] this->data;
 	this->length = other.length;
-	this->data = new T[this->length];
+	this->data = std::make_unique<T[]>(this->length);
 	for (int i = 0; i < this->length; i++) {
 		this->data[i] = other.data[i];
 	}
@@ -81,7 +78,7 @@ template<class T>
 DynArray<T> DynArray<T>::operator+(const DynArray& other) {
 	DynArray<T> tmp;
 	tmp.length = this->length + other.length;
-	tmp.data = new T[tmp.length];
+	tmp.data = std::make_unique<T[]>(tmp.length);
 	int i = 0;
 	for (int i = 0, j = 0; i < tmp.length; i++) {
 		if (i < this->length) {

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define TASK2
+#define TASK1
 
 #ifdef TASK1
 #include "Vector3D.hpp"

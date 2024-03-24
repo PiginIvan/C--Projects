@@ -1,11 +1,12 @@
 #ifndef DYNARRAY_HPP
 #define DYNARRAY_HPP
+#include <memory>
 
 template <class T>
 class DynArray {
 private:
 	int length, count_elem;
-	T* data;
+	std::unique_ptr<T[]> data;
 
 public:
 	static int arrays_created;

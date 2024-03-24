@@ -1,11 +1,12 @@
 #ifndef NODE_HPP
 #define NODE_HPP
+#include <memory>
 
 template<class T>
 class Node {
 private:
 	T val;
-	Node* next;
+	std::unique_ptr<Node> next;
 public:
 	Node();
 	Node(T x);

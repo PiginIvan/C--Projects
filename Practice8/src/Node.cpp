@@ -24,12 +24,12 @@ T& Node<T>::get_ref_val() {
 
 template<class T>
 Node<T>* Node<T>::get_next() {
-	return next;
+	return next.get();
 }
 
 template<class T>
 void Node<T>::set_next(Node<T>* other) {
-	next = other;
+	next.reset(other);
 }
 
 template<>
@@ -56,12 +56,12 @@ char& Node<char>::get_ref_val() {
 
 template<>
 Node<char>* Node<char>::get_next() {
-	return next;
+	return next.get();
 }
 
 template<>
 void Node<char>::set_next(Node<char>* other) {
-	next = other;
+	next.reset(other);
 }
 
 

@@ -2,10 +2,11 @@
 #define GRAPH_HPP
 #include "Node.hpp"
 #include <functional>
+#include "memory"
 
 class Graph {
 private:
-    std::vector<Node*> nodes;
+    std::vector<std::shared_ptr<Node>> nodes;
 
 public:
     Graph();

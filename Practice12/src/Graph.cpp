@@ -1,12 +1,15 @@
 #include "Graph.hpp"
 #include <iostream>
 #include <queue>
+#include <memory>
 
-Graph::Graph() : nodes(std::vector<Node*>()) { }
+Graph::Graph() : nodes(std::vector<std::shared_ptr<Node>>()) { }
 
-void Graph::insert(Node* curNode) { nodes.push_back(curNode); }
+void Graph::insert(Node* curNode) { nodes.push_back(std::make_shared<Node>(curNode)); }
 
-void Graph::printGraph() {
+
+void Graph::printGraph()
+{
     for(int i = 0; i < nodes.size(); i++) {
         nodes[i]->printNode();
     }

@@ -1,36 +1,37 @@
 #include "Graph.hpp"
 #include <iostream>
+#include <memory>
 
 int main() {
     Graph town = Graph();
 
     int curId = 0;
-    Node* zero = new Node(curId++);
+    std::shared_ptr<Node> zero = std::make_shared<Node>(curId++);
     zero->insert("NN", 5);
     zero->insert("Dzerhinsk", 1);
     zero->addNeighbour(1);
     zero->addNeighbour(3);
-    Node* one = new Node(curId++);
+    std::shared_ptr<Node> one = std::make_shared<Node>(curId++);
     one->insert("Kstovo", 45);
     one->insert("Dzerhinsk", 2);
     one->addNeighbour(0);
     one->addNeighbour(4);
     one->addNeighbour(3);
-    Node* two = new Node(curId++);
+     std::shared_ptr<Node> two = std::make_shared<Node>(curId++);
     two->insert("Moscow", -77);
     two->insert("SpB", 22);
     two->addNeighbour(3);
-    Node* three = new Node(curId++);
+     std::shared_ptr<Node> three = std::make_shared<Node>(curId++);
     three->insert("NN", 7);
     three->insert("Kazan", 1111);
     three->addNeighbour(0);
     three->addNeighbour(1);
     three->addNeighbour(2);
-    Node* four = new Node(curId++);
+     std::shared_ptr<Node> four = std::make_shared<Node>(curId++);
     four->insert("Sochi", 7);
     four->addNeighbour(1);
 
-    town.insert(zero); town.insert(one); town.insert(two); town.insert(three); town.insert(four);
+    town.insert(zero.get()); town.insert(one.get()); town.insert(two.get()); town.insert(three.get()); town.insert(four.get());
 
     std::string key;
     std::cout << "Input key, that you want to find:" << std::endl;

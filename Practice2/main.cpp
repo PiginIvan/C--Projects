@@ -1,19 +1,20 @@
 #include <iostream>
 #include <cctype>
 #include <cstring>
+#include <memory>
 
-#define TASK3
+#define TASK2
 
 #ifdef TASK1
 
-void init_arr(int* arr, int* N) {
+void init_arr(std::unique_ptr<int[]>& arr, std::unique_ptr<int>& N) {
 	std::cout << "Enter numbers" << std::endl;
 	for (int i = 0; i < *N; i++) {
 		std::cin >> arr[i];
 	}
 }
 
-void sort_arr(int* arr, int* N) {
+void sort_arr(std::unique_ptr<int[]>& arr, std::unique_ptr<int>& N) {
 	for (int i = 0; i < *N; i++) {
 		for (int j = 0; j < *N - i - 1; j++) {
 			if (arr[j] > arr[j + 1]) {
@@ -23,7 +24,7 @@ void sort_arr(int* arr, int* N) {
 	}
 }
 
-void print_arr(int* arr, int* N) {
+void print_arr(std::unique_ptr<int[]>& arr, std::unique_ptr<int>& N) {
 	std::cout << std::endl;
 	for (int i = 0; i < *N; i++) {
 		std::cout << arr[i] << " ";
@@ -31,15 +32,14 @@ void print_arr(int* arr, int* N) {
 }
 
 int main() {
-	int* N = new int;
+	std::unique_ptr<int> N = std::make_unique<int>();
 	std::cout << "Enter count of numbers" << std::endl;
 	std::cin >> *N;
-	int* arr = new int[*N];
+	std::unique_ptr<int[]> arr = std::make_unique<int[]>(*N);
+	sort_arr(arr, N);
 	init_arr(arr, N);
 	sort_arr(arr, N);
 	print_arr(arr, N);
-	delete N;
-	delete[] arr;
 	return 0;
 }
 
@@ -47,7 +47,7 @@ int main() {
 
 #ifdef TASK2
 
-void sort_arr(int* arr, int* N) {
+void sort_arr(std::unique_ptr<int[]>& arr, std::unique_ptr<int>& N) {
 	std::cout << "Enter numbers" << std::endl;
 	for (int i = 0; i < *N; i++) {
 		std::cin >> arr[i];
@@ -68,7 +68,7 @@ void sort_arr(int* arr, int* N) {
 
 }
 
-void sort_arr(short* arr, int* N) {
+void sort_arr(std::unique_ptr<short[]>& arr, std::unique_ptr<int>& N) {
 	std::cout << "Enter numbers" << std::endl;
 	for (int i = 0; i < *N; i++) {
 		std::cin >> arr[i];
@@ -89,7 +89,7 @@ void sort_arr(short* arr, int* N) {
 
 }
 
-void sort_arr(double* arr, int* N) {
+void sort_arr(std::unique_ptr<double[]>& arr, std::unique_ptr<int>& N) {
 	std::cout << "Enter numbers" << std::endl;
 	for (int i = 0; i < *N; i++) {
 		std::cin >> arr[i];
@@ -112,37 +112,30 @@ void sort_arr(double* arr, int* N) {
 }
 
 int main() {
-	char* str = new char[10];
+	std::unique_ptr<char[]> str = std::make_unique<char[]>(10);
 	std::cout << "Select data type" << std::endl;
-	std::cin >> str;
-	if (!strcmp(str, "int")) {
-		int* N = new int;
+	std::cin >> str.get();
+	if (!strcmp(str.get(), "int")) {
+		std::unique_ptr<int> N = std::make_unique<int>();
 		std::cout << "Enter count of numbers" << std::endl;
 		std::cin >> *N;
-		int* arr = new int[*N];
+		std::unique_ptr<int[]> arr = std::make_unique<int[]>(*N);
 		sort_arr(arr, N);
-		delete N;
-		delete[] arr;
 	}
-	else if (!strcmp(str, "short")) {
-		int* N = new int;
+	else if (!strcmp(str.get(), "short")) {
+		std::unique_ptr<int> N = std::make_unique<int>();
 		std::cout << "Enter count of numbers" << std::endl;
 		std::cin >> *N;
-		int* arr = new int[*N];
+		std::unique_ptr<short[]> arr = std::make_unique<short[]>(*N);
 		sort_arr(arr, N);
-		delete N;
-		delete[] arr;
 	}
-	else if (!strcmp(str, "double")) {
-		int* N = new int;
+	else if (!strcmp(str.get(), "double")) {
+		std::unique_ptr<int> N = std::make_unique<int>();
 		std::cout << "Enter count of numbers" << std::endl;
 		std::cin >> *N;
-		double* arr = new double[*N];
+		std::unique_ptr<double[]> arr = std::make_unique<double[]>(*N);
 		sort_arr(arr, N);
-		delete N;
-		delete[] arr;
 	}
-	delete[] str;
 	return 0;
 }
 
@@ -152,46 +145,37 @@ int main() {
 #include "sorting.hpp"
 
 int main() {
-	char* str = new char[10];
+	std::unique_ptr<char[]> str = std::make_unique<char[]>(10);
 	std::cout << "Select data type" << std::endl;
-	std::cin >> str;
-	if (!strcmp(str, "int")) {
-		int* N = new int;
+	std::cin >> str.get();
+	if (!strcmp(str.get(), "int")) {
+		std::unique_ptr<int> N = std::make_unique<int>();
 		std::cout << "Enter count of numbers" << std::endl;
 		std::cin >> *N;
-		int* arr = new int[*N];
+		std::unique_ptr<int[]> arr = std::make_unique<int[]>(*N);
 		sort_arr(arr, N);
-		delete N;
-		delete[] arr;
 	}
-	else if (!strcmp(str, "short")) {
-		int* N = new int;
+	else if (!strcmp(str.get(), "short")) {
+		std::unique_ptr<int> N = std::make_unique<int>();
 		std::cout << "Enter count of numbers" << std::endl;
 		std::cin >> *N;
-		int* arr = new int[*N];
+		std::unique_ptr<short[]> arr = std::make_unique<short[]>(*N);
 		sort_arr(arr, N);
-		delete N;
-		delete[] arr;
 	}
-	else if (!strcmp(str, "double")) {
-		int* N = new int;
+	else if (!strcmp(str.get(), "double")) {
+		std::unique_ptr<int> N = std::make_unique<int>();
 		std::cout << "Enter count of numbers" << std::endl;
 		std::cin >> *N;
-		double* arr = new double[*N];
+		std::unique_ptr<double[]> arr = std::make_unique<double[]>(*N);
 		sort_arr(arr, N);
-		delete N;
-		delete[] arr;
 	}
-	else if (!strcmp(str, "char")) {
-		int* N = new int;
+	else if (!strcmp(str.get(), "char")) {
+		std::unique_ptr<int> N = std::make_unique<int>();
 		std::cout << "Enter count of numbers" << std::endl;
 		std::cin >> *N;
-		char* arr = new char[*N];
+		std::unique_ptr<char[]> arr = std::make_unique<char[]>(*N);
 		sort_arr(arr, N);
-		delete N;
-		delete[] arr;
 	}
-	delete[] str;
 	return 0;
 }
 

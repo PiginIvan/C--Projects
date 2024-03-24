@@ -2,7 +2,7 @@
 #include <iostream>
 
 template<class T>
-void sort_arr(T* arr, int* N) {
+void sort_arr(std::unique_ptr<T[]>& arr, std::unique_ptr<int>& N) {
 	std::cout << "Enter numbers" << std::endl;
 	for (int i = 0; i < *N; i++) {
 		std::cin >> arr[i];
@@ -24,10 +24,10 @@ void sort_arr(T* arr, int* N) {
 }
 
 template<>
-void sort_arr<char>(char* arr, int* N) {
+void sort_arr<char>(std::unique_ptr<char[]>& arr, std::unique_ptr<int>& N) {
 	std::cout << "Enter numbers" << std::endl;
 	for (int i = 0; i < *N; i++) {
-		std::cin >> arr[i];
+		std::cin >> arr.get();
 	}
 
 	int end = *N - 1;
@@ -51,6 +51,6 @@ void sort_arr<char>(char* arr, int* N) {
 
 }
 
-template void sort_arr<>(int*, int*);
-template void sort_arr<>(short*, int*);
-template void sort_arr<>(double*, int*);
+template void sort_arr<>(std::unique_ptr<int[]>& arr, std::unique_ptr<int>& N);
+template void sort_arr<>(std::unique_ptr<short[]>& arr, std::unique_ptr<int>& N);
+template void sort_arr<>(std::unique_ptr<double[]>& arr, std::unique_ptr<int>& N);
